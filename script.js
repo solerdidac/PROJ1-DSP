@@ -17,25 +17,32 @@ function crearTarjetas(filosofos) {
         imagen.src = filosofo.imagen;
         imagen.alt = `Foto de ${filosofo.nombre}`;
         imagen.classList.add("photo");
+
         tarjeta.append(imagen);
 
         // Creamos caja de informacion
         let info = document.createElement('div');
         info.classList.add('card-info');
+
         tarjeta.append(info);
+        
         // Creamos título
         let titulo = document.createElement('h3');
         titulo.classList.add('nombre');
         titulo.innerHTML = filosofo.nombre;
+
         info.append(titulo);
+
         // Creamos fila de información (info-row)
         let filaInfo = document.createElement('div');
         filaInfo.classList.add('info-row');
+
         info.append(filaInfo);
 
         // Añadimos info del país a filaInfo
         let filaPais = document.createElement('div');
         filaPais.classList.add('info-pais');
+
         filaInfo.append(filaPais)
 
         // Añadimos la bandera
@@ -57,6 +64,7 @@ function crearTarjetas(filosofos) {
         
         let filaCorriente = document.createElement('div');
         filaCorriente.classList.add('info-corriente');
+
         filaInfo.append(filaCorriente)
 
         let corrienteTexto = document.createElement('span');
@@ -69,6 +77,7 @@ function crearTarjetas(filosofos) {
         
         let filaArma = document.createElement('div');
         filaArma.classList.add('info-arma');
+
         filaInfo.append(filaArma)
 
         let armaTexto = document.createElement('span');
@@ -80,6 +89,7 @@ function crearTarjetas(filosofos) {
         // Añadimos caja de habilidades
         let habilidades = document.createElement('div');
         habilidades.classList.add('skills');
+
         info.append(habilidades);
 
         // Añadimos una a una las habilidades
@@ -87,6 +97,7 @@ function crearTarjetas(filosofos) {
             // Añadimos una caja de habilidad
             let habilidad = document.createElement('div');
             habilidad.classList.add('skill');
+
             habilidades.appendChild(habilidad);
 
             // Añadimos contenido caja de habilidad
@@ -94,18 +105,19 @@ function crearTarjetas(filosofos) {
             let iconHabilidad = document.createElement('img');
             iconHabilidad.src = "https://via.placeholder.com/16";
             iconHabilidad.alt = `Icono: ${infoHabilidad.habilidad}`;
+
             habilidad.appendChild(iconHabilidad);
 
             // 2.Etiqueta de habilidad
             let textoHabilidad = document.createElement('span');
             textoHabilidad.textContent = infoHabilidad.habilidad;
             textoHabilidad.classList.add('skill-name')
+
             habilidad.appendChild(textoHabilidad);
 
             // 2.Barra de habilidad
             let barraHabilidad = document.createElement('div');
             barraHabilidad.classList.add('skill-bar');
-
             let level = document.createElement('div');
             level.classList.add('level');
             level.style.width = `${infoHabilidad.nivel /4 *100}%`;
@@ -113,6 +125,13 @@ function crearTarjetas(filosofos) {
 
             habilidad.appendChild(barraHabilidad);
         }
+        
+        borrarTarjeta = document.createElement('div');
+        borrarTarjeta.innerHTML = "&#x2716";
+        borrarTarjeta.classList.add('botonEliminar');
+        borrarTarjeta.addEventListener('click',eliminarTarjeta);
+
+        tarjeta.append(borrarTarjeta)
 
         // Añadimos tarjeta creada al contenedor de tarjetas
         let contenedor = document.querySelector('.cards-container');
@@ -121,6 +140,7 @@ function crearTarjetas(filosofos) {
 }
 
 function eliminarTarjeta() {
+    this.closest('.card').remove();
 }
 
 function ordenarNombreAZ() {
