@@ -169,10 +169,24 @@ function crearNuevaTarjeta(event) {
     nuevoFilosofo.imagen = document.querySelector('.create-card-form .foto').value;
     nuevoFilosofo.pais = {};
     nuevoFilosofo.pais.nombre = document.querySelector('.create-card-form .pais').value;
+    
     // Completar la función
+    nuevoFilosofo.pais.bandera = document.querySelector('.create-card-form .bandera').value;
+    nuevoFilosofo.corriente = document.querySelector('.create-card-form .corriente').value;
+    nuevoFilosofo.arma = document.querySelector('.create-card-form .arma').value;
+    nuevoFilosofo.habilidades = [];
+    let habilidadesInput = document.querySelectorAll('.create-card-form .skills');
+    let habilidadesNombres = ["SabIdurÍa","Oratoria","Lógica","Innovación"];
 
-    // crearTarjetas(nuevoFilosofo);
-}
+    habilidadesInput.forEach((input, index) => {
+        nuevoFilosofo.habilidades.push({
+            habilidad: habilidadesNombres[index],
+            nivel: parseInt(input.value)
+        });
+    });
+    crearTarjetas([nuevoFilosofo]);
+    }
+      
 
 function parsearTarjetas(tarjetas){
     let filosofosParseados = [];
